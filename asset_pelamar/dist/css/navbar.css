@@ -1,0 +1,45 @@
+.hitam {
+  color: black;
+}
+.kiri {
+  min-height: 60vh;
+  min-width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-top: 30px;
+  margin-left: 50px;
+}
+.atas {
+  min-height: 10vh;
+  min-width: 100%;
+  border: 1px solid #ccc;
+  margin: 0;
+}
+.kanan {
+  min-height: 35vh;
+  min-width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 50px;
+}
+.isi {
+  min-height: 60vh;
+  min-width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  margin-top: 30px;
+  margin-left: 30px;
+  margin-right: 50px;
+}
+.img-circle {
+  border-radius: 50%;
+  min-height: 82px;
+  min-width: 82px;
+}
+.sub-bio {
+  width: 100%;
+  height: 40px;
+  border: 1px solid #ccc;
+}
