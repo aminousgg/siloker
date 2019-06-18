@@ -42,7 +42,28 @@
         ceka asd
       </div> -->
       <div class="dropdown-divider"></div>
-      kasdf
+      <div class="sub-bio">
+        jasdhgfv
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="sub-bio">
+        jasdhgfv
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="sub-bio">
+        jasdhgfv
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="sub-bio">
+        jasdhgfv
+      </div>
+      <div class="dropdown-divider"></div>
+      <div class="sub-bio">
+        jasdhgfv
+      </div>
+      <div class="dropdown-divider"></div>
+      <!-- tombol edit -->
+      <a href="#" style="margin-right:15px;" class="btn btn-primary btn-sm float-right">Edit</a>
     </div>
   </div>
   <div class="col-md-9">
