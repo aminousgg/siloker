@@ -7,19 +7,27 @@
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
 	<title><?= APP_NAME ?> | </title>
-	<link href="<?= base_url() ?>asset_pelamar/dist/css/bootstrap.css" rel="stylesheet">
+	  <link href="<?= base_url() ?>asset_pelamar/dist/css/bootstrap.css" rel="stylesheet">
     <link href="<?= base_url() ?>asset_pelamar/dist/css/navbar.css" rel="stylesheet">
+    <link href="<?= base_url() ?>asset_pelamar/_plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
 <!-- nav bar -->
 <nav class="navbar navbar-expand navbar-light bg-light shadow">
-    <ul style="margin-left:30px;" class="navbar-nav">
+    <ul style="margin-left:30px; " class="navbar-nav">
       <li class="nav-item d-none d-sm-inline-block">
         <!-- <a href="#" class="nav-link hitam"><?= APP_NAME ?></a> -->
         <img src="<?= base_url() ?>asset_pelamar/logo/siloker.png" height="40px" width="120px">
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="#" class="nav-link">Kategori </a>
+      </li>
+      <li style="margin-left:40px;" class="nav-item d-none d-sm-inline-block">
+        <div style="margin-top:5px;" class="input-group input-group-sm mb-3">
+          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <span class="input-group-text" id="basic-addon2">@</span>
+          </div>
+        </div>
       </li>
     </ul>
 </nav>
@@ -27,7 +35,23 @@
 <div class="row">
   <div class="col-md-12">
     <div class="atas">
-
+      <table style="width:100%; min-height:10vh;">
+        <tr>
+          <td valign="middle">
+            <p class="tulisan-atas" style="width:50%;">Lengkapi profil Anda untuk menjadi <b>Verified Account</b></p>
+          </td>
+          <td valign="middle" align="center" style="width:10%; border: 1px solid #ccc;">
+            <p class="aksi-atas"><i class="fa fa-lock"></i>   Akun</p>
+          </td>
+          <td valign="middle" align="center" style="width:10%; border: 1px solid #ccc;">
+            <p class="aksi-atas"><i class="fa fa-address-book-o"></i>  Datadiri</p>
+          </td>
+          <td valign="middle" align="center" style="width:10%; border: 1px solid #ccc;">
+            <p class="aksi-atas"><i class="fa fa-envelope-o"></i>  email</p>
+          </td>
+          <td valign="middle" align="center" style="width:10%;"></td>
+        </tr>
+      </table>
     </div>
   </div>
 </div>
@@ -71,7 +95,35 @@
         informasi baner
       </div>
       <div class="isi">
-          isi lowongan 
+        <div class="row d-flex justify-content-around">
+          <div class="card" style="width: 18rem;">
+            <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <!--  -->
+          <div class="card" style="width: 18rem;">
+            <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <!--  -->
+          <div class="card" style="width: 18rem;">
+            <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              <a href="#" class="btn btn-primary">Go somewhere</a>
+            </div>
+          </div>
+          <!--  -->
+        </div>
       </div>
   </div>
 </div>
