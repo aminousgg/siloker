@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -30,6 +31,25 @@
         </div>
       </li>
     </ul>
+    <!-- right -->
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item dropdown">
+        <a class="nav-link" data-toggle="dropdown" href="#">
+          <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="img-username img-thumbnail" width="44px" height="44px">
+          ini username
+        </a>
+        <div style="text-align:center" class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+          <span class="dropdown-item dropdown-header"></span>
+          <div class="dropdown-divider"></div>
+          <a href="#" style="text-align:center" class="dropdown-item">
+            <!-- foto tumnail -->
+            <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="img-username img-thumbnail" width="44px" height="44px">
+          </a>
+          <div class="dropdown-divider"></div>
+          <a href="#" class="dropdown-footer btn btn-outline-secondary">Logout</a>
+        </div>
+      </li>
+    </ul>
 </nav>
 <!--  -->
 <div class="row">
@@ -40,13 +60,13 @@
           <td valign="middle">
             <p class="tulisan-atas" style="width:50%;">Lengkapi profil Anda untuk menjadi <b>Verified Account</b></p>
           </td>
-          <td valign="middle" align="center" style="width:10%; border: 1px solid #ccc;">
+          <td valign="middle" align="center" class="garis-keras">
             <p class="aksi-atas"><i class="fa fa-lock"></i>   Akun</p>
           </td>
-          <td valign="middle" align="center" style="width:10%; border: 1px solid #ccc;">
+          <td valign="middle" align="center" class="garis-keras">
             <p class="aksi-atas"><i class="fa fa-address-book-o"></i>  Datadiri</p>
           </td>
-          <td valign="middle" align="center" style="width:10%; border: 1px solid #ccc;">
+          <td valign="middle" align="center" class="garis-keras">
             <p class="aksi-atas"><i class="fa fa-envelope-o"></i>  email</p>
           </td>
           <td valign="middle" align="center" style="width:10%;"></td>
@@ -91,9 +111,23 @@
     </div>
   </div>
   <div class="col-md-9">
-      <div class="kanan">
-        informasi baner
+      <!--  -->
+      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel" data-interval="500">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <!-- <img class="d-block w-100" src="..." alt="First slide"> -->
+            <div class="kanan">
+              <h1>baner1</h1>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <!-- <img class="d-block w-100" src="..." alt="First slide"> -->
+            <div class="kanan">
+              <h1>baner2</h1>
+            </div>
+          </div>
       </div>
+      <!--  -->
       <div class="isi">
         <div class="row d-flex justify-content-around">
           <div class="card" style="width: 18rem;">
@@ -128,7 +162,14 @@
   </div>
 </div>
 <!--  -->
+<footer style="background-color:#ccc; width:100%;" class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer>
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
+<script src="<?= base_url() ?>asset_pelamar/dist/js/bootstrap.bundle.js"></script>
 </body>
 </html>
