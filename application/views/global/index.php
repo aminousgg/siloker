@@ -8,24 +8,24 @@
   <meta content="" name="description">
 
   <!-- Favicons -->
-  <link href="img/favicon.png" rel="icon">
-  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="<?= base_url() ?>Rapid/img/favicon.png" rel="icon">
+  <link href="<?= base_url() ?>Rapid/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,500,600,700,700i|Montserrat:300,400,500,600,700" rel="stylesheet">
 
   <!-- Bootstrap CSS File -->
-  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="<?= base_url() ?>Rapid/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Libraries CSS Files -->
-  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="lib/animate/animate.min.css" rel="stylesheet">
-  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  <link href="<?= base_url() ?>Rapid/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="<?= base_url() ?>Rapid/lib/animate/animate.min.css" rel="stylesheet">
+  <link href="<?= base_url() ?>Rapid/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="<?= base_url() ?>Rapid/lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="<?= base_url() ?>Rapid/lib/lightbox/css/lightbox.min.css" rel="stylesheet">
 
   <!-- Main Stylesheet File -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="<?= base_url() ?>Rapid/css/style.css" rel="stylesheet">
 
   <!-- =======================================================
     Theme Name: Rapid
@@ -46,7 +46,7 @@
       <div class="logo float-left">
         <!-- Uncomment below if you prefer to use an image logo -->
         <h1 class="text-light"><a href="#intro" class="scrollto">
-          <img src="http://localhost/siloker/asset_pelamar/logo/siloker.png" height="50px" width="120px">
+          <img src="<?= base_url() ?>asset_pelamar/logo/siloker.png" height="50px" width="120px">
         </a></h1>
         <!-- <a href="#header" class="scrollto"><img src="img/logo.png" alt="" class="img-fluid"></a> -->
       </div>
@@ -57,13 +57,18 @@
           <li><a href="#about">Gabung</a></li>
           <li><a href="#services">Layanan</a></li>
           <li><a href="#team">Team</a></li>
+          <li class="drop-down"><a href="">Login</a>
+            <ul>
+              <li><a href="#">Perusahaan</a></li>
+              <li><a href="#">Pelamar</a></li>
+            </ul>
+          </li>
           <li><a href="#footer">Contact Us</a></li>
         </ul>
       </nav><!-- .main-nav -->
       
     </div>
   </header><!-- #header -->
-
   <!--==========================
     Intro Section
   ============================-->
@@ -78,7 +83,7 @@
         </div>
   
         <div class="col-md-6 intro-img order-md-last order-first">
-          <img src="img/intro-img.svg" alt="" class="img-fluid">
+          <img src="<?= base_url() ?>Rapid/img/intro-img.svg" alt="" class="img-fluid">
         </div>
       </div>
 
@@ -96,22 +101,24 @@
 
         <div class="row feature-item">
           <div class="col-lg-6 wow fadeInUp">
-            <img  src="img/features-1.svg" class="img-fluid" alt="">
+            <img  src="<?= base_url() ?>Rapid/img/features-1.svg" class="img-fluid" alt="">
           </div>
           <div class="col-lg-6 wow fadeInUp pt-5 pt-lg-0">
-            <h4>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h4>
-            <p>
-              Ipsum in aspernatur ut possimus sint. Quia omnis est occaecati possimus ea. Quas molestiae perspiciatis occaecati qui rerum. Deleniti quod porro sed quisquam saepe. Numquam mollitia recusandae non ad at et a.
-            </p>
-            <p>
-              Ad vitae recusandae odit possimus. Quaerat cum ipsum corrupti. Odit qui asperiores ea corporis deserunt veritatis quidem expedita perferendis. Qui rerum eligendi ex doloribus quia sit. Porro rerum eum eum.
-            </p>
+            <img src="<?= base_url() ?>Rapid/img/features-2.svg" class="img-fluid" alt="">
+          </div>
+        </div>
+        <div class="row mt-5">
+          <div style="text-align:center;" class="col-lg-6 fadeInUp">
+            <a href="#" class="btn btn-info btn-lg">Daftar Sebegai Pelamar</a>
+          </div>
+          <div style="text-align:center;" class="col-lg-6 fadeInUp">
+            <a href="#" class="btn btn-info btn-lg">Daftar Sebegai Perusahaan</a>
           </div>
         </div>
 
-        <div class="row feature-item mt-5 pt-5">
+        <!-- <div class="row feature-item mt-5 pt-5">
           <div class="col-lg-6 wow fadeInUp order-1 order-lg-2">
-            <img src="img/features-2.svg" class="img-fluid" alt="">
+            <img src="<?= base_url() ?>Rapid/img/features-2.svg" class="img-fluid" alt="">
           </div>
 
           <div class="col-lg-6 wow fadeInUp pt-4 pt-lg-0 order-2 order-lg-1">
@@ -127,7 +134,7 @@
             </p>
           </div>
           
-        </div>
+        </div> -->
 
       </div>
 
@@ -230,7 +237,7 @@
 
           <div class="col-lg-3 col-md-6 wow fadeInUp">
             <div class="member">
-              <img src="img/team-1.jpg" class="img-fluid" alt="">
+              <img src="<?= base_url() ?>Rapid/img/team-1.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Walter White</h4>
@@ -248,7 +255,7 @@
 
           <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
             <div class="member">
-              <img src="img/team-2.jpg" class="img-fluid" alt="">
+              <img src="<?= base_url() ?>Rapid/img/team-2.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Sarah Jhonson</h4>
@@ -266,7 +273,7 @@
 
           <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.2s">
             <div class="member">
-              <img src="img/team-3.jpg" class="img-fluid" alt="">
+              <img src="<?= base_url() ?>Rapid/img/team-3.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>William Anderson</h4>
@@ -284,7 +291,7 @@
 
           <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
             <div class="member">
-              <img src="img/team-4.jpg" class="img-fluid" alt="">
+              <img src="<?= base_url() ?>Rapid/img/team-4.jpg" class="img-fluid" alt="">
               <div class="member-info">
                 <div class="member-info-content">
                   <h4>Amanda Jepson</h4>
@@ -510,22 +517,22 @@
   <!-- <div id="preloader"></div> -->
 
   <!-- JavaScript Libraries -->
-  <script src="lib/jquery/jquery.min.js"></script>
-  <script src="lib/jquery/jquery-migrate.min.js"></script>
-  <script src="lib/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="lib/easing/easing.min.js"></script>
-  <script src="lib/mobile-nav/mobile-nav.js"></script>
-  <script src="lib/wow/wow.min.js"></script>
-  <script src="lib/waypoints/waypoints.min.js"></script>
-  <script src="lib/counterup/counterup.min.js"></script>
-  <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-  <script src="lib/isotope/isotope.pkgd.min.js"></script>
-  <script src="lib/lightbox/js/lightbox.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/jquery/jquery.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/jquery/jquery-migrate.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/easing/easing.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/mobile-nav/mobile-nav.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/wow/wow.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/waypoints/waypoints.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/counterup/counterup.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/owlcarousel/owl.carousel.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/isotope/isotope.pkgd.min.js"></script>
+  <script src="<?= base_url() ?>Rapid/lib/lightbox/js/lightbox.min.js"></script>
   <!-- Contact Form JavaScript File -->
-  <script src="contactform/contactform.js"></script>
+  <script src="<?= base_url() ?>Rapid/contactform/contactform.js"></script>
 
   <!-- Template Main Javascript File -->
-  <script src="js/main.js"></script>
+  <script src="<?= base_url() ?>Rapid/js/main.js"></script>
 
 </body>
 </html>
