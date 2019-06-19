@@ -1,6 +1,10 @@
 @import url(//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en);
  .footer{
             padding: 15px 25px;background-color: white;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
         }
 .p-xxs {
     padding: 5px !important

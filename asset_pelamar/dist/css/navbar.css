@@ -98,3 +98,23 @@
   -moz-box-shadow: 0px 5px 5px 5px rgba(2, 2, 2, 0.15);
   box-shadow: 0px 5px 5px 5px rgba(39, 39, 39, 0.15);
 }
+.box-reg{
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  padding: 0px;
+  width: 1100px;
+  border-radius: 8px;
+  background-color:#f5f5f5;
+  -webkit-box-shadow: 0px 5px 5px 5px rgba(29, 28, 28, 0.144);
+  -moz-box-shadow: 0px 5px 5px 5px rgba(2, 2, 2, 0.15);
+  box-shadow: 0px 5px 5px 5px rgba(39, 39, 39, 0.15);
+}
+.rad-left{
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+}
+.p-samping{
+  padding-left: 10px;
+  padding-right: 20px;
+}

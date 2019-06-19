@@ -9,4 +9,10 @@ class Auth extends CI_Controller {
     function login_perusahaan(){
         $this->load->view('perusahaan/login-perusahaan');
     }
+    function reg_pelamar(){
+        $this->load->view('pelamar/reg-pelamar');
+    }
+    function reg_perusahaan(){
+        $this->load->view('perusahaan/reg-perusahaan');
+    }
 }
