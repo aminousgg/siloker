@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Rapid Bootstrap Template</title>
+  <title><?= APP_NAME ?></title>
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
   <meta content="" name="keywords">
   <meta content="" name="description">
@@ -59,8 +59,8 @@
           <li><a href="#team">Team</a></li>
           <li class="drop-down"><a href="">Login</a>
             <ul>
-              <li><a href="#">Perusahaan</a></li>
-              <li><a href="#">Pelamar</a></li>
+              <li><a href="<?= base_url('perusahaan') ?>">Perusahaan</a></li>
+              <li><a href="<?= base_url('pelamar') ?>">Pelamar</a></li>
             </ul>
           </li>
           <li><a href="#footer">Contact Us</a></li>
@@ -109,10 +109,10 @@
         </div>
         <div class="row mt-5">
           <div style="text-align:center;" class="col-lg-6 fadeInUp">
-            <a href="#" class="btn btn-info btn-lg">Daftar Sebegai Pelamar</a>
+            <a href="<?= base_url() ?>pelamar" class="btn btn-info btn-lg">Daftar Sebegai Pelamar</a>
           </div>
           <div style="text-align:center;" class="col-lg-6 fadeInUp">
-            <a href="#" class="btn btn-info btn-lg">Daftar Sebegai Perusahaan</a>
+            <a href="<?= base_url() ?>perusahaan" class="btn btn-info btn-lg">Daftar Sebegai Perusahaan</a>
           </div>
         </div>
 

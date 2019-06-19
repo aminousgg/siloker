@@ -2,6 +2,10 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Perusahaan extends CI_Controller {
+	function __construct(){
+		parent::__construct();
+        
+	}
 	//functions
 	function index(){
 		$data['judul']="Dashboard";

@@ -39,7 +39,7 @@
             <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="img-username img-thumbnail" width="44px" height="44px">
           </a>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-footer btn btn-outline-secondary">Logout</a>
+          <a href="<?= base_url() ?>pelamar/logout" class="dropdown-footer btn btn-outline-secondary">Logout</a>
         </div>
       </li>
     </ul>
