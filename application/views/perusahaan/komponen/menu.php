@@ -12,7 +12,7 @@
 
         <ul class="nav" id="side-menu">
             <li>
-                <a href="index.html"> <span class="nav-label">Dashboard</span> </a>
+                <a href="<?= base_url() ?>perusahaan"> <span class="nav-label">Dashboard</span> </a>
             </li>
             <li>
                 <a href="analytics.html"> <span class="nav-label">Daftar Pelamar</span> </a>
