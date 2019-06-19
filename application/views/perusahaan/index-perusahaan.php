@@ -36,7 +36,7 @@
   <?php $this->load->view('perusahaan/komponen/panel'); ?>
   <!--  -->
   <div class="content animate-panel">
-    ini isi content
+    <?php $this->load->view($file); ?>
   </div>
   <!--  -->
   <?php $this->load->view('perusahaan/komponen/footer'); ?>
