@@ -23,11 +23,20 @@
       <li class="nav-item d-none d-sm-inline-block">
       </li>
       <li style="margin-left:40px;" class="nav-item d-none d-sm-inline-block">
-        <div style="margin-top:5px;" class="input-group input-group-sm mb-3">
-          <input type="text" class="form-control" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <span class="input-group-text" id="basic-addon2">@</span>
+        <div style="margin-top:5px;" class="input-group input-group-sm mb-2 mr-sm-2">
+          <input type="text" class="form-control" placeholder="Cari">
+          <div class="input-group-prepend">
+            <div class="input-group-text"><i class="fa fa-search"></i></div>
           </div>
+        </div>
+      </li>
+      <li class="nav-item d-none d-sm-inline-block ml-2">
+        <div style="margin-top:5px;" class="input-group input-group-sm mb-3">
+          <select name="kate" class="form-control">
+            <option value="">--Cari Berdasarkan--</option>
+            <option value="1">Perusahaan</option>
+            <option value="2">Minimal Pendidikan</option>
+          </select>
         </div>
       </li>
     </ul>
@@ -161,10 +170,13 @@
       </div>
   </div>
 </div>
-<!--  -->
+<!-- batas  -->
+<div style="margin-top:30px;">
+  &nbsp;
+</div>
 <footer style="background-color:#ccc; width:100%;" class="footer mt-auto py-3">
   <div class="container">
-    <span class="text-muted">Place sticky footer content here.</span>
+    <span class="text-muted">Team 1 PPL.</span>
   </div>
 </footer>
 

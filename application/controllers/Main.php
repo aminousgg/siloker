@@ -7,4 +7,7 @@ class Main extends CI_Controller {
 	function index(){
 		$this->load->view('pelamar/utama');
 	}
+	function login(){
+		$this->load->view('pelamar/daftar-pelamar');
+	}
 }
