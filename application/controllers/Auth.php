@@ -20,13 +20,7 @@ class Auth extends CI_Controller {
             $this->load->view('pelamar/login-pelamar');
         }else{
             $cek=$this->db->get_where('users',array('username'=>$this->input->post('email')))->row_array();
-            if($cek){
-                // set level
-                if($cek['level']==0){
-                    $level="pelamar";
-                }else{
-                    $level="perusahaan";
-                }
+            if($cek!=null&&$cek['level']==0){
                 // cek status
                 if($cek['status']==0){
                     $this->session->set_flashdata('pesan_login', 'Akun anda belum terverifikasi ! silahkan cek email anda');
@@ -37,7 +31,7 @@ class Auth extends CI_Controller {
                     $sesi=array(
                         'username' => $cek['username'],
                         'nama'     => $cek['nama'],
-                        'level'    => $level,
+                        'level'    => 'pelamar',
                     );
                     $this->session->set_userdata('sesi', $sesi);
                     redirect(base_url('auth/login'));
@@ -55,7 +49,30 @@ class Auth extends CI_Controller {
         if(!$this->input->post('login')){
             $this->load->view('perusahaan/login-perusahaan');
         }else{
-            
+            $cek=$this->db->get_where('users',array('username'=>$this->input->post('email')))->row_array();
+            if($cek!=null&&$cek['level']==1){
+                // cek status
+                if($cek['status']==0){
+                    $this->session->set_flashdata('pesan_login', 'Akun anda belum terverifikasi ! silahkan cek email anda');
+                    redirect(base_url('auth/login_perusahaan'));
+                }
+                //cek pass
+                if($cek['password']==md5($this->input->post('pass'))){
+                    $sesi=array(
+                        'username' => $cek['username'],
+                        'nama'     => $cek['nama'],
+                        'level'    => 'perusahaan',
+                    );
+                    $this->session->set_userdata('sesi', $sesi);
+                    redirect(base_url('auth/login_perusahaan'));
+                }else{
+                    $this->session->set_flashdata('pesan_login', 'username/passord salah !');
+                    redirect(base_url('auth/login_perusahaan'));
+                }
+            }else{
+                $this->session->set_flashdata('pesan_login', 'Akses Denied wrong level !');
+                redirect(base_url('auth/login_perusahaan'));
+            }
         }
     }
     function reg_pelamar(){
@@ -63,7 +80,11 @@ class Auth extends CI_Controller {
             $this->load->view('pelamar/reg-pelamar');
         }else{
             $this->db->select('username');
-            $cek_mail=$this->db->get_where('users',array('username'=>$this->input->post('email')));
+            $where=array(
+                'username' => $this->input->post('email'),
+                'level'    => 0
+            );
+            $cek_mail=$this->db->get_where('users',$where);
             if($cek_mail->num_rows()>0){
                 $this->session->set_flashdata('error', 'Email ini telah digunakan !');
                 redirect(base_url('auth/reg_pelamar'));
@@ -85,7 +106,36 @@ class Auth extends CI_Controller {
         
     }
     function reg_perusahaan(){
-        $this->load->view('perusahaan/reg-perusahaan');
+        if(!$this->input->post('daftar')){
+            $this->load->view('perusahaan/reg-perusahaan');
+        }else{
+            // cek username
+            $this->db->select('username');
+            $where=array(
+                'username' => $this->input->post('email'),
+                'level'    => 1
+            );
+            $cek_mail=$this->db->get_where('users',$where);
+            if($cek_mail->num_rows()>0){
+                $this->session->set_flashdata('error', 'Email ini telah digunakan !');
+                redirect(base_url('auth/reg_perusahaan'));
+            }
+            $data=array(
+                'username' => $this->input->post('email'),
+                'nama'     => $this->input->post('nama'),
+                'password' => md5($this->input->post('pass')),
+                'token'    => md5($this->input->post('email')),
+                'status'   => 0,
+                'level'    => 1
+            );
+            // kirim email
+            $this->send_mail_perusahaan($this->input->post('email'));
+            if($this->M_auth->insert('users', $data)){
+                $this->session->set_flashdata('success', 'Berhasil Mendaftar silahkan cek email anda untuk verifikasi');
+                redirect(base_url('auth/reg_perusahaan'));
+            }
+        }
+        
     }
     //
     function send_mail($email){
@@ -112,5 +162,31 @@ class Auth extends CI_Controller {
         $ci->email->subject('AKTIFASI AKUN');
         $ci->email->message($isi);
         $this->email->send();
+    }
+    function send_mail_perusahaan($email){
+        $ci = get_instance();
+        $ci->load->library('email');
+        $code = md5($email);
+        $config['protocol'] = "smtp";
+        $config['smtp_host'] = "ssl://smtp.gmail.com";
+        $config['smtp_port'] = "465";
+        $config['smtp_user'] = "cobasekolahku@gmail.com";
+        $config['smtp_pass'] = "123akusayangkamu";
+        $config['charset'] = "utf-8";
+        $config['mailtype'] = "html";
+        $config['newline'] = "\r\n";
+        $ci->email->initialize($config);
+        $isi = '<table>';
+        $isi .= '<tr><td><h4>Aktifasi akun Perusahaan SILOKER</h4></td></tr>';
+        $isi .= '<tr><td><p>Halo <b>' . $email . '</b> terima kasih telah bergabung dengan SILOKER. <br> Kami beritahukan kepada Anda untuk melakukan aktivasi akun agar bisa digunakan.</p></td></tr>';
+        $isi .= '<tr><td><a href="http://localhost/siloker/auth/aktivasi/'.$code.' ">AKTIVASI AKUN</a></td></tr>';
+        $isi .= '<tr><td><p>Terima Kasih</p></td></tr>';
+        $isi .= '</table>';
+        $ci->email->from('noreply@printmedia.com', 'SiLoker');
+        $ci->email->to($email);
+        $ci->email->subject('AKTIFASI AKUN');
+        $ci->email->message($isi);
+        $this->email->send();
+        // var_dump($this->email->send()); die;
     }
 }

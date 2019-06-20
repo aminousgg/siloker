@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>asset/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css" />
     <link rel="stylesheet" href="<?= base_url() ?>asset/fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="<?= base_url() ?>asset/styles/style.css">
+    <link href="<?= base_url() ?>swal/sweetalert2.min.css" rel="stylesheet">
 </head>
 <body>
 <!-- Simple splash screen-->

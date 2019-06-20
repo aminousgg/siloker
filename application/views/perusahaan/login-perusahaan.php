@@ -29,26 +29,40 @@
 </style>
 </head>
 <body class="text-center">
+<?php //var_dump($this->session->userdata('sesi')); ?>
 <div class="sibox">
-  <form class="form-signin">
+  <?= form_open() ?>
+    <!--  -->
     <img class="mb-4" src="<?= base_url() ?>asset_pelamar/logo/siloker.png" height="45px" width="120px">
     <h1 class="h3 mb-3 font-weight-normal">Sign in Perusahaan</h1>
+    <!--  -->
     <label for="inputEmail" class="sr-only">Email address</label>
-    <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+    <input type="text" name="email" class="form-control" placeholder="Email address" required autofocus>
+    <!--  -->
     <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" id="inputPassword" class="form-control mt-1" placeholder="Password" required>
+    <input type="password" name="pass" class="form-control mt-1" placeholder="Password" required>
+    <!--  -->
     <div class="checkbox mb-3">
       <label>
         <input type="checkbox" value="remember-me"> Remember me
       </label>
     </div>
-    <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+    <!--  -->
+    <button class="btn btn-lg btn-primary btn-block" value="1" name="login" type="submit">Sign in</button>
+    <p class="text-danger err"></p>
     <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
-  </form>
+  <?= form_close() ?>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
 <script src="<?= base_url() ?>asset_pelamar/dist/js/bootstrap.bundle.js"></script>
+<?php if($this->session->flashdata('pesan_login')){ ?>
+  <script>
+    $(document).ready(function(){
+      $(".err").html('<?= $this->session->flashdata('pesan_login') ?>');
+    });
+  </script>
+<?php } ?>
 </body>
 </html>

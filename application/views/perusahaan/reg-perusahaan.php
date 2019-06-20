@@ -4,12 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title><?= APP_NAME ?> | </title>
-	<link href="<?= base_url() ?>asset_pelamar/dist/css/bootstrap.css" rel="stylesheet">
+    <title><?= APP_NAME ?> | Registrasi Perusahaan</title>
+	  <link href="<?= base_url() ?>asset_pelamar/dist/css/bootstrap.css" rel="stylesheet">
     <link href="<?= base_url() ?>asset_pelamar/dist/css/navbar.css" rel="stylesheet">
+    <link href="<?= base_url() ?>swal/sweetalert2.min.css" rel="stylesheet">
     <link href="<?= base_url() ?>asset_pelamar/_plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
+<?php 
+  if($this->session->flashdata('error')):
+      $link="<script src='".base_url()."swal/sweetalert2.all.min.js'></script>";
+      echo $link;
+      echo '<script>
+              swal({
+                  type: "'.'error'.'",
+                  title: "'.$this->session->flashdata('error').'",
+                  text: "'.'Gagal menambahkan ke database'.'",
+                  timer: 10000,
+                  customClass: "'.'animated bounceIn'.'",
+                  })
+            </script>';
+  endif;
+  if($this->session->flashdata('success')):
+      $link="<script src='".base_url()."swal/sweetalert2.all.min.js'></script>";
+      echo $link;
+      echo '<script>
+              swal({
+                  type: "'.'success'.'",
+                  title: "'.'Berhasil'.'",
+                  text: "'.$this->session->flashdata('success').'",
+                  customClass: "'.'animated bounceIn'.'",
+                  })
+            </script>';
+  endif;
+?>
+
 <div class="box-reg">
   <div class="row">
     <div style="background-color:#3786bd;" class="col-md-6 rad-left">
@@ -20,36 +49,35 @@
         <img class="mb-2" src="<?= base_url() ?>asset_pelamar/logo/siloker.png" height="45px" width="120px"> <br>
         Daftar Akun Perusahaan
       </h1>
-      <form>
+      <?= form_open() ?>
         <div class="row mb-2 p-samping">
           <div class="col">
             <label><b>Email Perusahaan</b></label>
-            <input type="text" class="form-control" placeholder="Email">
+            <input type="text" name="email" class="form-control" placeholder="Email">
           </div>
         </div>
         <div class="row mb-2 p-samping">
           <div class="col">
             <label><b>Nama Perusahaan</b></label>
-            <input type="text" class="form-control" placeholder="First name">
+            <input type="text" name="nama" class="form-control" placeholder="First name">
           </div>
         </div>
         <div class="row mb-2 p-samping">
           <div class="col">
             <label><b>New Password</b></label>
-            <input type="password" class="form-control" placeholder="Password">
+            <input type="password" name="pass" class="form-control" placeholder="Password">
           </div>
           <div class="col">
             <label><b>Konfirmasi Password</b></label>
-            <input type="password" class="form-control" placeholder="Confirm Password">
+            <input type="password" name="conf_pass" class="form-control" placeholder="Confirm Password">
           </div>
         </div>
         <div class="row mb-4 mt-4 p-samping">
           <div class="col text-center">
-            <button type="submit" class="btn btn-primary">Daftar</button>
+            <button type="submit" name="daftar" value="1" class="btn btn-primary">Daftar</button>
           </div>
         </div>
-      </form>
-      
+      <?= form_close() ?>
     </div>
   </div>
 </div>
