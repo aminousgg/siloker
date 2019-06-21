@@ -50,6 +50,69 @@ class Perusahaan extends CI_Controller {
                 redirect(base_url('perusahaan'));
 			}
 		}
+	}
+
+	function post_lowongan(){
+		if(!$this->input->post('post')){
+			$data['judul']="Posting Lowongan";
+			$data['subjudul']="Informasikan Lowongan untuk mendapatkan pegawai";
+			$data['file']="perusahaan/post-lowongan";
+			$data['table']="";
+			$this->load->view('perusahaan/index-perusahaan',$data);
+		}else{
+			$post=array(
+				'email'		  => $this->session->userdata('sesi')['username'],
+				'jabatan'	  => $this->input->post('jabatan'),
+				'gaji'		  => $this->input->post('gaji'),
+				'isi_post'	  => $this->input->post('isi_post'),
+				'status_post' => 1
+			);
+			if($this->db->insert('posting',$post)){
+				$this->db->select('id');
+				$id_post=$this->db->get_where('posting',array('email'=>$this->session->userdata('sesi')['username']))->row_array();
+				$this->db->where('email',$this->session->userdata('sesi')['username']);
+				$up_id=array('id_post'=>$id_post['id']);
+				if($this->db->update('perusahaan',$up_id)){
+					$this->session->set_flashdata('success', 'Data berhasil disimpan !');
+                	redirect(base_url('perusahaan/post_lowongan'));
+				}
+			}
+		}
+	}
+
+	function edit_post(){
+		// echo json_encode
+		$post=array(
+			'jabatan'	=> $this->input->post('jabatan'),
+			'gaji'		=> $this->input->post('gaji'),
+			'isi_post'		=> $this->input->post('isi'),
+		);
+		$id=$this->input->post('id');
+		$this->db->where('id',$id);
+		if($this->db->update('posting',$post)){
+			$data=array('cek'=>true);
+			echo json_encode($data);
+		}
+	}
+
+	function set_status_pos($aksi){
+		if($aksi=="post"){
+			$set=array('status_post'=>1);
+			$id=$this->input->post('id');
+			$this->db->where('id',$id);
+			if($this->db->update('posting',$set)){
+				$data=array('cek'=>true);
+				echo json_encode($data);
+			}
+		}elseif($aksi=="unpost"){
+			$set=array('status_post'=>0);
+			$id=$this->input->post('id');
+			$this->db->where('id',$id);
+			if($this->db->update('posting',$set)){
+				$data=array('cek'=>true);
+				echo json_encode($data);
+			}
+		}
 		
 	}
 }

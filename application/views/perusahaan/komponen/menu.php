@@ -24,7 +24,7 @@
               </ul>
             </li>
             <li>
-                <a href="grid_system.html"> <span class="nav-label">Post Lowongan</span></a>
+                <a href="<?= base_url() ?>perusahaan/post_lowongan"> <span class="nav-label">Post Lowongan</span></a>
             </li>
         </ul>
     </div>

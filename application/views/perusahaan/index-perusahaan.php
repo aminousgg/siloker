@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>asset/fonts/pe-icon-7-stroke/css/helper.css" />
     <link rel="stylesheet" href="<?= base_url() ?>asset/styles/style.css">
     <link href="<?= base_url() ?>swal/sweetalert2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="<?= base_url() ?>asset/vendor/toastr/build/toastr.min.css" />
 </head>
 <body>
 <!-- Simple splash screen-->
@@ -49,11 +50,6 @@
 <script src="<?= base_url() ?>asset/vendor/jquery-ui/jquery-ui.min.js"></script>
 <script src="<?= base_url() ?>asset/vendor/slimScroll/jquery.slimscroll.min.js"></script>
 <script src="<?= base_url() ?>asset/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="<?= base_url() ?>asset/vendor/jquery-flot/jquery.flot.js"></script>
-<script src="<?= base_url() ?>asset/vendor/jquery-flot/jquery.flot.resize.js"></script>
-<script src="<?= base_url() ?>asset/vendor/jquery-flot/jquery.flot.pie.js"></script>
-<script src="<?= base_url() ?>asset/vendor/flot.curvedlines/curvedLines.js"></script>
-<script src="<?= base_url() ?>asset/vendor/jquery.flot.spline/index.js"></script>
 <script src="<?= base_url() ?>asset/vendor/metisMenu/dist/metisMenu.min.js"></script>
 <script src="<?= base_url() ?>asset/vendor/iCheck/icheck.min.js"></script>
 <script src="<?= base_url() ?>asset/vendor/peity/jquery.peity.min.js"></script>
@@ -62,82 +58,142 @@
 <!-- App scripts -->
 <script src="<?= base_url() ?>asset/scripts/homer.js"></script>
 <script src="<?= base_url() ?>asset/scripts/charts.js"></script>
-
+<script src="<?= base_url() ?>asset/vendor/toastr/build/toastr.min.js"></script>
 <script>
+    // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    //     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    //         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    $(function () {
-
-        /**
-         * Flot charts data and options
-         */
-        var data1 = [ [0, 55], [1, 48], [2, 40], [3, 36], [4, 40], [5, 60], [6, 50], [7, 51] ];
-        var data2 = [ [0, 56], [1, 49], [2, 41], [3, 38], [4, 46], [5, 67], [6, 57], [7, 59] ];
-
-        var chartUsersOptions = {
-            series: {
-                splines: {
-                    show: true,
-                    tension: 0.4,
-                    lineWidth: 1,
-                    fill: 0.4
-                },
-            },
-            grid: {
-                tickColor: "#f0f0f0",
-                borderWidth: 1,
-                borderColor: 'f0f0f0',
-                color: '#6a6c6f'
-            },
-            colors: [ "#62cb31", "#efefef"],
-        };
-
-        $.plot($("#flot-line-chart"), [data1, data2], chartUsersOptions);
-
-        /**
-         * Flot charts 2 data and options
-         */
-        var chartIncomeData = [
-            {
-                label: "line",
-                data: [ [1, 10], [2, 26], [3, 16], [4, 36], [5, 32], [6, 51] ]
-            }
-        ];
-
-        var chartIncomeOptions = {
-            series: {
-                lines: {
-                    show: true,
-                    lineWidth: 0,
-                    fill: true,
-                    fillColor: "#64cc34"
-
-                }
-            },
-            colors: ["#62cb31"],
-            grid: {
-                show: false
-            },
-            legend: {
-                show: false
-            }
-        };
-
-        $.plot($("#flot-income-chart"), chartIncomeData, chartIncomeOptions);
-
-
-
-    });
+    // ga('create', 'UA-4625583-2', 'webapplayers.com');
+    // ga('send', 'pageview');
 
 </script>
 <script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  $(document).ready(function(){
+    // $("#edit").click(function(){
+    //   $("#jab").removeAttr("disabled");
+    //   $("#gaji").removeAttr("disabled");
+    //   $("#isi").removeAttr("disabled");
+    //   $("#edit").html('<i class="fa fa-paste"></i> simpan');
+    //   $("#edit").removeAttr("id");
+    //   $(this).attr("onclick","simpan()");
+    // });
+  });
+  function edit_post(){
+      $("#jab").removeAttr("disabled");
+      $("#gaji").removeAttr("disabled");
+      $("#isi").removeAttr("disabled");
+      $("#edit").html('<i class="fa fa-paste"></i> simpan');
+      $("#edit").removeAttr("onclick");
+      $("#edit").attr("onclick","simpan()");
+  }
 
-    ga('create', 'UA-4625583-2', 'webapplayers.com');
-    ga('send', 'pageview');
+  function simpan(){
+    var id=$("#id_post").val();
+    var jab = $("#jab").val();
+    var gaji = $("#gaji").val();
+    var isi = $("#isi").val();
+    var datas = new FormData();
+    datas.append("jabatan", jab);
+    datas.append("gaji", gaji);
+    datas.append("isi", isi);
+    datas.append("id", id);
+    // console.log(jab);
+    $.ajax({
+       type: "POST",
+       url: "<?= base_url() ?>perusahaan/edit_post",
+       data: datas,
+       processData: false,
+       contentType: false,
+       success: function(data) {
+        var json = data,
+        obj = JSON.parse(json);
+        if(obj.cek){
+            toastr.success('Success - Postingan berhasil disimpan.');
+        }else{
+            toastr.error('Error - Postingan gagal disimpan');
+        }
+       },
+       error: function(data) {
 
+       }
+    });
+    $("#jab").attr("disabled","");
+    $("#gaji").attr("disabled","");
+    $("#isi").attr("disabled","");
+    $(".btn-info").html('<i class="fa fa-paste"></i> Edit');
+    $("#edit").removeAttr("onclick");
+    $("#edit").attr("onclick","edit_post()");
+  }
+  function unpost(){
+    var id=$("#id_post").val();
+    var datas = new FormData();
+    datas.append("id", id);
+    $.ajax({
+       type: "POST",
+       url: "<?= base_url() ?>perusahaan/set_status_pos/unpost",
+       data: datas,
+       processData: false,
+       contentType: false,
+       success: function(data) {
+        var json = data,
+        obj = JSON.parse(json);
+        if(obj.cek){
+            toastr.success('Success - Postingan berhasil di nonaktifkan.');
+        }else{
+            toastr.error('Error - Postingan gagal disimpan');
+        }
+       },
+       error: function(data) {
+
+       }
+    });
+    $("#sts").removeAttr("class");
+    $("#sts").attr('class','btn btn-danger btn-circle');
+    $("#sts").html('<i class="fa fa-times"></i>');
+    $("#pos").removeAttr("class");
+    $("#pos").attr('class','btn btn-success btn-sm pull-right');
+    $("#pos").html("Post");
+    $("#pos").removeAttr("onclick");
+    $("#pos").attr("onclick","post()");
+  }
+  function post(){
+    var id=$("#id_post").val();
+    var datas = new FormData();
+    datas.append("id", id);
+    $.ajax({
+       type: "POST",
+       url: "<?= base_url() ?>perusahaan/set_status_pos/post",
+       data: datas,
+       processData: false,
+       contentType: false,
+       success: function(data) {
+        var json = data,
+        obj = JSON.parse(json);
+        if(obj.cek){
+            toastr.success('Success - Postingan berhasil diaktifkan.');
+        }else{
+            toastr.error('Error - Postingan gagal disimpan');
+        }
+       },
+       error: function(data) {
+
+       }
+    });
+    $("#sts").removeAttr("class");
+    $("#sts").attr('class','btn btn-success btn-circle');
+    $("#sts").html('<i class="fa fa-check"></i>');
+    $("#pos").removeAttr("class");
+    $("#pos").attr('class','btn btn-primary btn-sm pull-right');
+    $("#pos").html("Unpost");
+    $("#pos").removeAttr("onclick");
+    $("#pos").attr("onclick","unpost()");
+  }
+
+  $(document).ready(function(){
+    
+  });
 </script>
 
 </body>
