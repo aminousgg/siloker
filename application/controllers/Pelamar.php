@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Pelamar extends CI_Controller {
 	function __construct(){
 		parent::__construct();
+		$this->load->model('M_auth');
         if(!$this->session->userdata('sesi')){
 			redirect(base_url('auth/login'));
 		}
@@ -17,7 +18,8 @@ class Pelamar extends CI_Controller {
 			$data['judul']="Home Pelamar";
 			$data['file']="pelamar/home";
 			$data['subjudul']="Halaman Uatma Pelamar";
-			$data['table']="";
+			$data['table']=$this->M_auth->profile($email);
+			$data['post']=$this->M_auth->home();
 			$this->load->view('pelamar/utama',$data);
 		}else{
 			redirect(base_url('pelamar/data_diri'));
@@ -56,5 +58,36 @@ class Pelamar extends CI_Controller {
 			}
 		}
 		
+	}
+
+	function melamar(){
+		$email_pel=$this->session->userdata('sesi')['username'];
+		$cek=$this->db->get_where('minat_perusahaan',array('email_pelamar'=>$email_pel))->num_rows();
+		$haha=array(
+			'email_pelamar' 	=> $email_pel,
+			'email_perusahaan'	=> $this->input->post('email_peru')
+		);
+		$cek_minat=$this->db->get_where('minat_perusahaan',$haha)->num_rows();
+		if($cek_minat>0){
+			$this->session->set_flashdata('error', 'Anda sudah mendaftar di perusahaan ini !');
+			redirect(base_url('pelamar'));
+		}
+
+		if($cek<4){
+			$in=array(
+				'email_pelamar'		=> $email_pel,
+				'email_perusahaan'	=> $this->input->post('email_peru'),
+			);
+			if($this->db->insert('minat_perusahaan',$in)){
+				$this->session->set_flashdata('success', 'Berhasil Mendaftar !');
+				redirect(base_url('pelamar'));
+			}else{
+				$this->session->set_flashdata('error', 'Gagal Mendaftar !');
+				redirect(base_url('pelamar'));
+			}
+		}else{
+			$this->session->set_flashdata('error', 'Kesempatan mendaftar anda sudah habis');
+			redirect(base_url('pelamar'));
+		}
 	}
 }

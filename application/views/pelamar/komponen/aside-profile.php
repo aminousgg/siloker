@@ -8,23 +8,23 @@
       </div> -->
       <div class="dropdown-divider"></div>
       <div class="sub-bio">
-        jasdhgfv
+        <?= $table['nama'] ?>
       </div>
       <div class="dropdown-divider"></div>
       <div class="sub-bio">
-        jasdhgfv
+        <?= $table['tempat_lahir'] ?>, <?= $table['tgl_lahir'] ?>
       </div>
       <div class="dropdown-divider"></div>
       <div class="sub-bio">
-        jasdhgfv
+        <?= $table['pendidikan'] ?> (<?= $table['tahun_lulus'] ?>)
       </div>
       <div class="dropdown-divider"></div>
       <div class="sub-bio">
-        jasdhgfv
+        <?= $table['email'] ?>
       </div>
       <div class="dropdown-divider"></div>
       <div class="sub-bio">
-        jasdhgfv
+        <?= $table['alamat'] ?>
       </div>
       <div class="dropdown-divider"></div>
       <!-- tombol edit -->
