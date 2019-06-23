@@ -2,11 +2,18 @@
     <div id="navigation">
         <div class="profile-picture">
             <a href="index.html">
-                <img src="<?= base_url() ?>asset/images/profile.jpg" class="m-b" alt="logo">
+                <?php
+                $mail=$this->session->userdata('sesi')['username'];
+                $this->db->select('foto_profile');
+                $foto=$this->db->get_where('perusahaan',array('email'=>$mail))->row_array()['foto_profile']; ?>
+                <img src="<?= base_url() ?>upload/foto_perusahaan/<?= $foto ?>" class="m-b" alt="logo" width="82px" height="82px">
             </a>
 
             <div class="stats-label text-color">
-                <span class="font-extra-bold font-uppercase">Robert Razer</span>
+                <?php
+                $nama=$this->db->get_where('perusahaan',array('email'=>$this->session->userdata('sesi')['username']) )->row_array()['nama_perusahaan'];
+                ?>
+                <span class="font-extra-bold font-uppercase"><?= $nama ?></span>
             </div>
         </div>
 
@@ -15,7 +22,7 @@
                 <a href="<?= base_url() ?>perusahaan"> <span class="nav-label">Dashboard</span> </a>
             </li>
             <li>
-                <a href="analytics.html"> <span class="nav-label">Daftar Pelamar</span> </a>
+                <a href="<?= base_url() ?>perusahaan/daftar_pelamar"> <span class="nav-label">Daftar Pelamar</span> </a>
             </li>
             <li>
               <a href="#"><span class="nav-label">Pengaturan</span><span class="fa arrow"></span> </a>

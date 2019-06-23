@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="icon" href="favicon.ico">
-	<title><?= APP_NAME ?> | </title>
+	<title><?= APP_NAME ?> | Login Perusahaan</title>
 	  <link href="<?= base_url() ?>asset_pelamar/dist/css/bootstrap.css" rel="stylesheet">
     <link href="<?= base_url() ?>asset_pelamar/dist/css/navbar.css" rel="stylesheet">
     <link href="<?= base_url() ?>asset_pelamar/_plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet">

@@ -189,4 +189,24 @@ class Auth extends CI_Controller {
         $this->email->send();
         // var_dump($this->email->send()); die;
     }
+
+    function notif_aktif(){
+        $data['judul']="Aktifasi";
+        $this->load->view('global/aktivasi',$data);
+    }
+
+    function aktivasi($token){
+        $cek=$this->db->get_where('users',array('token'=>$token))->num_rows();
+        if($cek>0){
+            $this->db->where('token',$token);
+            if( $this->db->update('users',array('status'=>1)) ){
+                $this->session->set_flashdata('success', 'Akun anda berhasil diaktifkan');
+                $this->session->set_flashdata('link', 'perusahaan');
+                redirect(base_url('auth/notif_aktif'));
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Gagal Mendaftar');
+            redirect(base_url('auth/notif_aktif'));
+        }
+    }
 }

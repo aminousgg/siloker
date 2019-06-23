@@ -4,6 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Perusahaan extends CI_Controller {
 	function __construct(){
 		parent::__construct();
+		$this->load->model('M_auth');
         if(!$this->session->userdata('sesi')){
 			redirect(base_url('auth/login_perusahaan'));
 		}
@@ -31,19 +32,23 @@ class Perusahaan extends CI_Controller {
 			$email=$this->session->userdata('sesi')['username'];
 			$cek=$this->db->get_where('perusahaan',array('email'=>$email))->num_rows();
 			if($cek>0){
-				echo "Asdfjhbv";
 				redirect(base_url('perusahaan'));
 			}else{
-				echo "sadfkjb";
 				$this->load->view('perusahaan/bio-perusahaan');
 			}
 		}else{
 			//var_dump($this->input->post('nama_per')); die;
+			$config['upload_path'] 		= './upload/foto_perusahaan/';
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif';
+			$this->load->library('upload',$config);
+			$this->upload->do_upload('file');
+			$hasil = $this->upload->data();
 			$data=array(
 				'email'				=> $this->input->post('email'),
 				'nama_perusahaan'	=> $this->input->post('nama_per'),
 				'alamat'			=> $this->input->post('alamat'),
-				'kota'				=> $this->input->post('kota')
+				'kota'				=> $this->input->post('kota'),
+				'foto_profile'		=> $hasil['file_name']
 			);
 			if($this->db->insert('perusahaan', $data)){
 				$this->session->set_flashdata('success', 'Data berhasil disimpan !');
@@ -81,7 +86,6 @@ class Perusahaan extends CI_Controller {
 	}
 
 	function edit_post(){
-		// echo json_encode
 		$post=array(
 			'jabatan'	=> $this->input->post('jabatan'),
 			'gaji'		=> $this->input->post('gaji'),
@@ -113,6 +117,13 @@ class Perusahaan extends CI_Controller {
 				echo json_encode($data);
 			}
 		}
-		
+	}
+
+	function daftar_pelamar(){
+		$data['judul']="Posting Lowongan";
+		$data['subjudul']="Informasikan Lowongan untuk mendapatkan pegawai";
+		$data['file']="perusahaan/daftar_pelamar";
+		$data['table']=$this->M_auth->daftar_lamaran($this->session->userdata('sesi')['username']);
+		$this->load->view('perusahaan/index-perusahaan',$data);
 	}
 }

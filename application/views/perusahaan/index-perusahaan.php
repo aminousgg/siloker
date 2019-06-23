@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>asset/styles/style.css">
     <link href="<?= base_url() ?>swal/sweetalert2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="<?= base_url() ?>asset/vendor/toastr/build/toastr.min.css" />
+    <link rel="stylesheet" href="<?= base_url() ?>asset/vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.css" />
 </head>
 <body>
 <!-- Simple splash screen-->
@@ -59,14 +60,12 @@
 <script src="<?= base_url() ?>asset/scripts/homer.js"></script>
 <script src="<?= base_url() ?>asset/scripts/charts.js"></script>
 <script src="<?= base_url() ?>asset/vendor/toastr/build/toastr.min.js"></script>
+<script src="<?= base_url() ?>asset/vendor/datatables/media/js/jquery.dataTables.min.js"></script>
+<script src="<?= base_url() ?>asset/vendor/datatables_plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"></script>
 <script>
-    // (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-    //     (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-    //         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    // })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    // ga('create', 'UA-4625583-2', 'webapplayers.com');
-    // ga('send', 'pageview');
+    $('#example2').dataTable({
+      "ordering": false
+    });
 
 </script>
 <script>

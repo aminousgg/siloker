@@ -17,6 +17,14 @@ class M_auth extends CI_Model
             FROM perusahaan p JOIN posting pos ON p.`id_post`=pos.`id`
         ')->result();
     }
+    //===============Perusahaan
+    function daftar_lamaran($email_peru){
+        return $this->db->query('
+            SELECT *
+            FROM minat_perusahaan mp JOIN pelamar pl ON mp.`email_pelamar`=pl.`email`
+            WHERE mp.`email_perusahaan`="'.$email_peru.'"
+        ')->result();
+    }
 }
 
 ?>
