@@ -126,4 +126,38 @@ class Perusahaan extends CI_Controller {
 		$data['table']=$this->M_auth->daftar_lamaran($this->session->userdata('sesi')['username']);
 		$this->load->view('perusahaan/index-perusahaan',$data);
 	}
+
+	function hubungi($email,$nama_peru){
+		$nama_peru=urldecode($nama_peru);
+		$pelamar=$this->db->get_where('pelamar',array('email'=>$email))->row_array();
+		$ci = get_instance();
+        $ci->load->library('email');
+        $code = md5($email);
+        $config['protocol'] = "smtp";
+        $config['smtp_host'] = "ssl://smtp.gmail.com";
+        $config['smtp_port'] = "465";
+        $config['smtp_user'] = "cobasekolahku@gmail.com";
+        $config['smtp_pass'] = "123akusayangkamu";
+        $config['charset'] = "utf-8";
+        $config['mailtype'] = "html";
+        $config['newline'] = "\r\n";
+        $ci->email->initialize($config);
+		$isi = '<table>';
+        $isi .= '<tr><td><h4>Halo '.$pelamar['nama'].'</h4></td></tr>';
+        $isi .= '<tr><td><p>Anda Telah masuk kriteria di perusahaan kami. <br> Kami beritahukan kepada Anda untuk mengikuti tes seleksi selanjutnya.</p></td></tr>';
+        $isi .= '<tr><td>Silahkan Hubungi pihak '.$pelamar['nama'].'</td></tr>';
+        $isi .= '<tr><td><p>Hormat Kami <br><br><br> '.$nama_peru.'</p></td></tr>';
+        $isi .= '</table>';
+        $ci->email->from('noreply@printmedia.com', $nama_peru);
+        $ci->email->to($email);
+        $ci->email->subject('Balasan Lamaran');
+        $ci->email->message($isi);
+        if( $this->email->send() ){
+			$this->session->set_flashdata('success','Pelamar Berhasil dihubungi');
+			redirect(base_url('perusahaan/daftar_pelamar'));
+		}else{
+			$this->session->set_flashdata('error','Gagal Menghubungi Pelamar silahkan cek jaringan anda');
+			redirect(base_url('perusahaan/daftar_pelamar'));
+		}
+	}
 }

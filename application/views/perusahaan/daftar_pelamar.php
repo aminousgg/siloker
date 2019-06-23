@@ -1,3 +1,35 @@
+<?php
+  $email=$this->session->userdata('sesi')['username'];
+  $perusahaan=$this->db->get_where('perusahaan',array('email'=>$email))->row_array();
+?>
+
+<?php 
+  if($this->session->flashdata('error')):
+      $link="<script src='".base_url()."swal/sweetalert2.all.min.js'></script>";
+      echo $link;
+      echo '<script>
+              swal({
+                  type: "'.'error'.'",
+                  title: "'.$this->session->flashdata('error').'",
+                  text: "'.'Gagal menambahkan ke database'.'",
+                  timer: 10000,
+                  customClass: "'.'animated bounceIn'.'",
+                  })
+            </script>';
+  endif;
+  if($this->session->flashdata('success')):
+      $link="<script src='".base_url()."swal/sweetalert2.all.min.js'></script>";
+      echo $link;
+      echo '<script>
+              swal({
+                  type: "'.'success'.'",
+                  title: "'.'Berhasil'.'",
+                  text: "'.$this->session->flashdata('success').'",
+                  customClass: "'.'animated bounceIn'.'",
+                  })
+            </script>';
+  endif;
+?>
 <div class="row">
     <div class="col-md-12">
       <form action="" method="post">
@@ -28,7 +60,10 @@
                     <td><?= $row->email ?></td>
                     <td><?= $row->tempat_lahir ?>, <?= $row->tgl_lahir ?></td>
                     <td><?= $row->pendidikan ?> (<?= $row->tahun_lulus ?>)</td>
-                    <td><button class="btn btn-primary2 btn-sm">Hubungi</button></td>
+                    <?php $this->session ?>
+                    <td><a href="<?= base_url() ?>perusahaan/hubungi/<?= $row->email ?>/<?= $perusahaan['nama_perusahaan'] ?>" class="btn btn-primary2 btn-sm">
+                      Hubungi
+                    </a></td>
                   </tr>
                 <?php } ?>
               </tbody>

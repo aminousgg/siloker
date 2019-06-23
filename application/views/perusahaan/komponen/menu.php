@@ -6,7 +6,11 @@
                 $mail=$this->session->userdata('sesi')['username'];
                 $this->db->select('foto_profile');
                 $foto=$this->db->get_where('perusahaan',array('email'=>$mail))->row_array()['foto_profile']; ?>
-                <img src="<?= base_url() ?>upload/foto_perusahaan/<?= $foto ?>" class="m-b" alt="logo" width="82px" height="82px">
+                <?php if($foto==null){ ?>
+                  <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="m-b" width="82px" height="82px">
+                <?php }else{ ?>
+                    <img src="<?= base_url() ?>upload/foto_perusahaan/<?= $foto ?>" class="m-b" alt="logo" width="82px" height="82px">
+                <?php } ?>
             </a>
 
             <div class="stats-label text-color">
