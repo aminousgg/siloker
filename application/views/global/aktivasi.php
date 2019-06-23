@@ -36,7 +36,7 @@
                   customClass: "'.'animated bounceIn'.'",
                   }).then((result) => {
                     if (result.value) {
-                        window.location.href = "'.base_url().'auth/login_'.$this->session->flashdata('link').'";
+                        window.location.href = "'.base_url().'auth/login'.$this->session->flashdata('link').'";
                     }
                   });
             </script>';

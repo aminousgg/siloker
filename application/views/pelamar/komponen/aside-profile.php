@@ -1,7 +1,11 @@
   <div class="col-md-3 mr-20">
     <div class="kiri">
       <a href="#" style="text-align:center; margin-top:10px;" class="dropdown-item">
-        <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="img-circle img-thumbnail" width="82px" height="82px">
+        <?php if($table['foto']==null){ ?>
+          <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="img-circle img-thumbnail" width="82px" height="82px">
+        <?php }else{ ?>
+          <img src="<?= base_url() ?>upload/foto_pelamar/<?= $table['foto'] ?>" class="img-circle img-thumbnail" width="82px" height="82px">
+        <?php } ?>
       </a>
       <!-- <div class="sub-bio">
         ceka asd

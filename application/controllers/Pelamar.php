@@ -35,13 +35,16 @@ class Pelamar extends CI_Controller {
 			$email=$this->session->userdata('sesi')['username'];
 			$cek=$this->db->get_where('pelamar',array('email'=>$email))->num_rows();
 			if($cek>0){
-				echo "Asdfjhbv";
 				redirect(base_url('pelamar'));
 			}else{
-				echo "sadfkjb";
 				$this->load->view('pelamar/data-diri');
 			}
 		}else{
+			$config['upload_path'] 		= './upload/foto_pelamar/';
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif';
+			$this->load->library('upload',$config);
+			$this->upload->do_upload('file');
+			$hasil = $this->upload->data();
 			$data=array(
 				'email'		=> $this->input->post('email'),
 				'nama'		=> $this->input->post('nama'),
@@ -51,6 +54,7 @@ class Pelamar extends CI_Controller {
 				'pendidikan'=> $this->input->post('pend'),
 				'tahun_lulus' => $this->input->post('thn_lulus'),
 				'status'	=> $this->input->post('status'),
+				'foto'		=> $hasil['file_name']
 			);
 			if($this->db->insert('pelamar',$data)){
 				$this->session->set_flashdata('success', 'Data Berhasil di simpan !');

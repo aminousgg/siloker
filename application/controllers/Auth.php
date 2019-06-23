@@ -196,12 +196,17 @@ class Auth extends CI_Controller {
     }
 
     function aktivasi($token){
-        $cek=$this->db->get_where('users',array('token'=>$token))->num_rows();
-        if($cek>0){
+        $cek=$this->db->get_where('users',array('token'=>$token));
+        if($cek->num_rows()>0){
             $this->db->where('token',$token);
             if( $this->db->update('users',array('status'=>1)) ){
+                $cek=$cek->row_array();
+                if($cek['level']==0){
+                    $this->session->set_flashdata('link', '');
+                }elseif($cek['level']==1){
+                    $this->session->set_flashdata('link', '_perusahaan');
+                }
                 $this->session->set_flashdata('success', 'Akun anda berhasil diaktifkan');
-                $this->session->set_flashdata('link', 'perusahaan');
                 redirect(base_url('auth/notif_aktif'));
             }
         }else{
