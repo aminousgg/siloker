@@ -6,7 +6,11 @@
         <?php } ?>
           <?php foreach($post as $row){ ?>
             <div class="card" style="width: 18rem;">
-              <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="card-img-top">
+              <?php if(!$row->foto_profile){ ?>
+                <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="card-img-top">
+              <?php }else{ ?>
+                <img src="<?= base_url() ?>upload/foto_pelamar/<?= $row->foto_profile ?>" class="card-img-top">
+              <?php } ?>
               <div class="card-body">
                 <h5 class="card-title"><?= $row->nama_perusahaan ?></h5>
                 <p class="card-text"><?= $row->isi_post ?></p>
@@ -30,7 +34,44 @@
           </button>
         </div>
         <div class="modal-body">
-          <?= $post->nama_perusahaan ?>
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <?php if(!$row->foto_profile){ ?>
+                  <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" width="180px" height="180px">
+                <?php }else{ ?>
+                  <img src="<?= base_url() ?>upload/foto_pelamar/<?= $post->foto_profile ?>" width="180px" height="180px">
+                <?php } ?>
+              </div>
+              <div class="col-md-8">
+                <table class="table table table-striped table-bordered">
+                  <tr>
+                    <td><b>Nama Perusahaan</b></td>
+                    <td><?= $post->nama_perusahaan ?></td>
+                  </tr>
+                  <tr>
+                    <td><b>Alamat</b></td>
+                    <td><?= $post->alamat ?></td>
+                  </tr>
+                  <tr>
+                    <td><b>Kota</b></td>
+                    <td><?= $post->kota ?></td>
+                  </tr>
+                  <tr>
+                    <td><b>Posisi Yg dibutuhkan</b></td>
+                    <td><?= $post->jabatan ?></td>
+                  </tr>
+                  <tr>
+                    <td><b>Estimasi Gaji</b></td>
+                    <td><?= $post->gaji ?></td>
+                  </tr>
+                  <tr>
+                    <td colspan="2" align="center"><?= $post->isi_post ?></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
         <div class="modal-footer">
           <?= form_open('pelamar/melamar') ?>

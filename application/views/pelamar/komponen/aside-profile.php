@@ -31,7 +31,8 @@
         <?= $table['alamat'] ?>
       </div>
       <div class="dropdown-divider"></div>
-      <!-- tombol edit -->
-      <a href="#" style="margin-right:15px;" class="btn btn-primary btn-sm float-right">Edit</a>
     </div>
   </div>
+
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
+

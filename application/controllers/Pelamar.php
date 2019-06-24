@@ -94,4 +94,45 @@ class Pelamar extends CI_Controller {
 			redirect(base_url('pelamar'));
 		}
 	}
+
+	function edit_datadiri(){
+		if($this->input->post('foto')!=1){
+			$edit = array(
+				'nama'			=> $this->input->post('nama'),
+				'tempat_lahir'	=> $this->input->post('tmp_lahir'),
+				'tgl_lahir'		=> $this->input->post('tgl_lahir'),
+				'alamat'		=> $this->input->post('alamat')
+			);
+			// var_dump($edit);
+			$id=$this->input->post('id');
+			$this->db->where('id',$id);
+			if( $this->db->update('pelamar',$edit) ){
+				$this->session->set_flashdata('success', 'Datadiri berhasil di update.');
+				redirect(base_url('pelamar'));
+			}else{
+				$this->session->set_flashdata('error', 'Gagal Mengubah datadiri');
+				redirect(base_url('pelamar'));
+			}
+		}else{
+			$config['upload_path'] 		= './upload/foto_pelamar/';
+			$config['allowed_types'] 	= 'jpg|jpeg|png|gif';
+			$this->load->library('upload',$config);
+			$this->upload->do_upload('file');
+			$hasil = $this->upload->data();
+			$edit = array(
+				'foto' => $hasil['file_name'],
+			);
+			// var_dump($edit);
+			$id=$this->input->post('id');
+			$this->db->where('id',$id);
+			if( $this->db->update('pelamar',$edit) ){
+				$this->session->set_flashdata('success', 'Datadiri berhasil di update.');
+				redirect(base_url('pelamar'));
+			}else{
+				$this->session->set_flashdata('error', 'Gagal Mengubah datadiri');
+				redirect(base_url('pelamar'));
+			}
+		}
+		
+	}
 }
