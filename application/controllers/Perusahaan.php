@@ -163,7 +163,7 @@ class Perusahaan extends CI_Controller {
 
 	function profile(){
 		if(!$this->input->post('id')){
-			$data['judul']="Posting Lowongan";
+			$data['judul']="Profile Perusahaan";
 			$data['subjudul']="Akun Dan Profile";
 			$data['file']="perusahaan/profile";
 			$email=$this->session->userdata('sesi')['username'];

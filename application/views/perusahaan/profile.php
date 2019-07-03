@@ -73,13 +73,21 @@
                 <!--  -->
                 <!-- kanan -->
                 <div class="col-sm-4">
-                  ini post foto
+                  <form action="<?= base_url() ?>perusahaan/ubah_foto" method="post" enctype='multipart/form-data'>
+                    <div class="kotakUp" id="gambar">
+                      <?php if($table['foto_profile']==null){ ?>
+                        <img src="<?= base_url() ?>asset_pelamar/logo/warna.jpg" class="m-b" width="92px" height="92px">
+                      <?php }else{ ?>
+                        <img src="<?= base_url() ?>upload/foto_perusahaan/<?= $foto ?>" class="m-b" alt="logo" width="82px" height="82px">
+                      <?php } ?> <br>
+                    </div>
+                    <input style="display: none;" type="file" name="file" id="file" class="m-b">
+                    <button type="button" class="btn btn-info ubah_foto">Ubah Foto</button>
+                    <button style="display: none;" type="submit" class="btn btn-success update">Update</button>
+                  </form>
                 </div>
                 <!--  -->
               </div>
-            </div>
-            <div class="panel-footer text-right">
-                
             </div>
         </div>
       </form>
