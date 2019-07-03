@@ -25,6 +25,11 @@ class M_auth extends CI_Model
             WHERE mp.`email_perusahaan`="'.$email_peru.'"
         ')->result();
     }
+
+    function pro_per($email){
+        return $this->db->get_where('perusahaan',array('email'=>$email))->row_array();
+    }
+
 }
 
 ?>

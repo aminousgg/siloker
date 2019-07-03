@@ -31,7 +31,7 @@
             <li>
               <a href="#"><span class="nav-label">Pengaturan</span><span class="fa arrow"></span> </a>
               <ul class="nav nav-second-level">
-                  <li><a href="panels.html">Profile</a></li>
+                  <li><a href="<?= base_url() ?>perusahaan/profile">Profile</a></li>
               </ul>
             </li>
             <li>

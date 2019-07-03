@@ -160,4 +160,33 @@ class Perusahaan extends CI_Controller {
 			redirect(base_url('perusahaan/daftar_pelamar'));
 		}
 	}
+
+	function profile(){
+		if(!$this->input->post('id')){
+			$data['judul']="Posting Lowongan";
+			$data['subjudul']="Akun Dan Profile";
+			$data['file']="perusahaan/profile";
+			$email=$this->session->userdata('sesi')['username'];
+			$data['table']=$this->M_auth->pro_per($email);
+			$this->load->view('perusahaan/index-perusahaan',$data);
+		}else{
+			$id=$this->input->post('id');
+			$up = array(
+				'email'				=> $this->input->post('email'),
+				'nama_perusahaan'	=> $this->input->post('nama'),
+				'alamat'			=> $this->input->post('alamat')
+			);
+			$this->db->where('id',$id);
+			if($this->db->update('perusahaan',$up)){
+				$isi=$this->db->get_where('perusahaan',array('id'=>$id))->row_array();
+				$isi['cek']=true;
+				echo json_encode($isi);
+			}else{
+				$data=array('cek'=>false);
+				echo json_encode($data);
+			}
+			
+		}
+		
+	}
 }

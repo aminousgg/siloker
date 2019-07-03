@@ -67,12 +67,7 @@
                 <!--  -->
                 <!-- kanan -->
                 <div class="col-sm-6">
-                  <div class="form-group">
-                    <div class="col-sm-12">
-                      <label>Foto</label>
-                      <input type="file" class="form-control m-b">
-                    </div>
-                  </div>
+                  
                 </div>
                 <!--  -->
               </div>
@@ -140,12 +135,7 @@
                 <!--  -->
                 <!-- kanan -->
                 <div class="col-sm-6">
-                  <div class="form-group">
-                    <div class="col-sm-12">
-                      <label>Foto</label>
-                      <input type="file" class="form-control m-b">
-                    </div>
-                  </div>
+                  
                 </div>
                 <!--  -->
               </div>

@@ -191,7 +191,52 @@
   }
 
   $(document).ready(function(){
-    
+    $(".edit_pro").click(function(){
+      $("#nama_per").removeAttr('disabled');
+      $("#alamat").removeAttr('disabled');
+      $("#email").removeAttr('disabled');
+      $(".edit_pro").hide();
+      $(".ubah").show();
+    });
+
+    $(".ubah").click(function(){
+      var datas = new FormData();
+      datas.append("id", $("#id_post").val() );
+      datas.append("nama", $("#nama_per").val() );
+      datas.append("email", $("#email").val() );
+      datas.append("alamat", $("#alamat").val() );
+      $.ajax({
+       type: "POST",
+       url: "<?= base_url() ?>perusahaan/profile",
+       data: datas,
+       processData: false,
+       contentType: false,
+       success: function(data) {
+        var json = data,
+        obj = JSON.parse(json);
+        console.log(obj);
+        if(obj.cek){
+            $("#nama_per").val(obj.nama_perusahaan);
+            $("#email").val(obj.email);
+            $("#alamat").val(obj.alamat);
+            // 
+            $("#nama_per").prop('disabled', true);
+            $("#alamat").prop('disabled', true);
+            $("#email").prop('disabled', true);
+            // 
+            $(".edit_pro").show();
+            $(".ubah").hide();
+            toastr.success('Success - Berhasil disimpan.');
+        }else{
+            toastr.error('Error - Gagal menyimpan');
+        }
+       },
+       error: function(data) {
+        console.log("ksadfkb");
+       }
+      });
+    });
+
   });
 </script>
 
